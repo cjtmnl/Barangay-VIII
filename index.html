@@ -6,19 +6,17 @@
   <title>Barangay VIII, Vigan City | Official Portal</title>
   <style>
     :root {
-      --gov-blue: #112e51;
+      --gov-blue: #112e51; /* Official Government Blue */
       --gov-light-blue: #205493;
       --gov-red: #cd2026;
-      --bg-gray: #f0f0f0;
+      --bg-gray: #f9f9f9;
     }
 
     body {
       margin: 0;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background-color: var(--bg-gray);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      color: #333;
     }
 
     /* Header Section */
@@ -27,9 +25,9 @@
       padding: 15px 5%;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 5px solid var(--gov-blue);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      align-items: flex-start;
+      border-bottom: 4px solid var(--gov-blue);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .header-left {
@@ -38,111 +36,133 @@
     }
 
     .brgy-name {
-      font-size: 24px;
-      font-weight: bold;
+      font-size: 26px;
+      font-weight: 800;
       color: var(--gov-blue);
       margin: 0;
+      text-transform: uppercase;
     }
 
     .datetime {
       font-size: 14px;
-      color: #666;
-      margin-top: 5px;
-      font-weight: 500;
+      color: #555;
+      margin-top: 8px;
+      font-family: monospace;
+      background: #e9ecef;
+      padding: 5px 10px;
+      border-radius: 4px;
+      display: inline-block;
     }
 
     .header-right {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 12px;
     }
 
     .header-right img {
-      height: 70px;
+      height: 75px;
       width: auto;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
 
     /* Main Content */
     .container {
-      flex: 1;
-      max-width: 1000px;
-      margin: 40px auto;
+      max-width: 1100px;
+      margin: 50px auto;
       padding: 0 20px;
       text-align: center;
     }
 
-    .welcome-text {
+    .portal-title {
       margin-bottom: 40px;
-    }
-
-    .welcome-text h2 {
       color: var(--gov-blue);
-      font-size: 28px;
     }
 
-    /* Button Styling */
-    .button-grid {
+    .portal-title h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    /* Rectangular Buttons */
+    .button-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-bottom: 40px;
+      gap: 25px;
+      margin-bottom: 50px;
     }
 
-    .nav-button {
+    .main-btn {
       background-color: var(--gov-light-blue);
       color: white;
-      padding: 30px;
-      text-decoration: none;
-      font-size: 20px;
+      padding: 40px 20px;
+      font-size: 22px;
       font-weight: bold;
-      border-radius: 8px;
+      text-transform: uppercase;
       border: none;
+      border-radius: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(32, 84, 147, 0.3);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      text-transform: uppercase;
+      gap: 10px;
     }
 
-    .nav-button:hover {
+    .main-btn:hover {
       background-color: var(--gov-blue);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(17, 46, 81, 0.4);
     }
 
-    /* PDF/Form Viewer */
-    .viewer-card {
+    .main-btn span {
+      font-size: 14px;
+      font-weight: normal;
+      opacity: 0.9;
+    }
+
+    /* Content Viewer */
+    .viewer-box {
       background: white;
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      margin-top: 20px;
-      display: none; /* Hidden until button is clicked */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      display: none; /* Initial hidden state */
+      margin-top: 30px;
     }
 
-    iframe {
-      width: 100%;
-      height: 700px;
-      border: none;
+    .viewer-controls {
+      background: #eee;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
     }
 
     .close-btn {
       background: var(--gov-red);
       color: white;
-      padding: 10px;
-      text-align: right;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
-      display: block;
     }
 
-    /* Mobile adjustments */
-    @media (max-width: 600px) {
-      .header { flex-direction: column; text-align: center; }
-      .header-right { margin-top: 15px; }
-      .brgy-name { font-size: 18px; }
+    iframe {
+      width: 100%;
+      height: 750px;
+      border: none;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .header { flex-direction: column; align-items: center; text-align: center; }
+      .header-right { margin-top: 20px; }
+      .brgy-name { font-size: 20px; }
+      iframe { height: 500px; }
     }
   </style>
 </head>
@@ -151,86 +171,97 @@
   <header class="header">
     <div class="header-left">
       <div class="brgy-name">Barangay VIII, Vigan City</div>
-      <div class="datetime" id="ph-clock">Loading Philippine Standard Time...</div>
+      <div class="datetime" id="pst-clock">Initializing Time...</div>
     </div>
+
     <div class="header-right">
-      <img src="vigan-logo.png" alt="City of Vigan Seal">
-      <img src="barangay-logo.png" alt="Barangay VIII Seal">
+      <img src="logo-vigan.png" alt="City of Vigan Seal">
+      <img src="logo-barangay.png" alt="Barangay VIII Seal">
     </div>
   </header>
 
   <main class="container">
-    <div class="welcome-text">
-      <h2>Public Service Portal</h2>
-      <p>Official digital resources for the residents of Barangay VIII.</p>
+    <div class="portal-title">
+      <h2>Public Information Center</h2>
+      <p>Official documents and community feedback for the Heritage City of Vigan.</p>
     </div>
 
-    <div class="button-grid">
-      <button class="nav-button" onclick="showContent('pdf')">
+    <div class="button-container">
+      <button class="main-btn" onclick="openService('charter')">
         Citizens Charter
+        <span>View Public Documents</span>
       </button>
 
-      <button class="nav-button" onclick="showContent('survey')">
+      <button class="main-btn" onclick="openService('survey')">
         Survey
+        <span>Community Feedback Form</span>
       </button>
     </div>
 
-    <div id="viewerCard" class="viewer-card">
-      <div class="close-btn" onclick="hideContent()">× CLOSE PREVIEW</div>
-      <iframe id="mainFrame" src=""></iframe>
+    <div id="contentViewer" class="viewer-box">
+      <div class="viewer-controls">
+        <strong id="viewerTitle">Document Preview</strong>
+        <button class="close-btn" onclick="closeService()">CLOSE ×</button>
+      </div>
+      <iframe id="serviceFrame" src=""></iframe>
     </div>
   </main>
 
- // Configuration - Updated for local files in your GitHub/Netlify folder
-  const links = {
-    // If you renamed your PDF to 'citizens-charter.pdf' in GitHub
-    pdf: "citizens-charter.pdf", 
-    
-    // If your survey is another HTML page or a different PDF
-    survey: "survey-details.pdf" 
-  };
+  <script>
+    // --- FILE CONFIGURATION ---
+    // Change these links to your actual GitHub file names or Google Form links
+    const serviceLinks = {
+      charter: "citizens-charter.pdf", // Your PDF file in GitHub
+      survey: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
+    };
 
-  function showContent(type) {
-    const card = document.getElementById('viewerCard');
-    const frame = document.getElementById('mainFrame');
-    
-    frame.src = links[type];
-    card.style.display = 'block';
-    card.scrollIntoView({ behavior: 'smooth' });
-  }
+    function openService(type) {
+      const viewer = document.getElementById('contentViewer');
+      const frame = document.getElementById('serviceFrame');
+      const title = document.getElementById('viewerTitle');
+
+      // Set Title based on button
+      title.innerText = type === 'charter' ? "Citizens Charter - Barangay VIII" : "Community Survey Form";
       
-      // Auto-scroll to the viewer
-      card.scrollIntoView({ behavior: 'smooth' });
+      // Load Content
+      frame.src = serviceLinks[type];
+      viewer.style.display = 'block';
+
+      // Scroll smoothly to the viewer
+      viewer.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function hideContent() {
-      const card = document.getElementById('viewerCard');
-      const frame = document.getElementById('mainFrame');
-      card.style.display = 'none';
-      frame.src = "";
+    function closeService() {
+      const viewer = document.getElementById('contentViewer');
+      const frame = document.getElementById('serviceFrame');
+      viewer.style.display = 'none';
+      frame.src = ""; // Stop loading content
     }
 
-    // Philippine Standard Time Clock
-    function updateClock() {
+    // --- PHILIPPINE STANDARD TIME (PST) CLOCK ---
+    function updatePST() {
       const now = new Date();
-      const options = { 
-        timeZone: 'Asia/Manila', 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric',
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit',
-        hour12: true 
-      };
       
-      const formatter = new Intl.DateTimeFormat('en-PH', options);
-      document.getElementById('ph-clock').textContent = "Philippine Standard Time: " + formatter.format(now);
+      // Formatter for Philippine Timezone
+      const options = {
+        timeZone: 'Asia/Manila',
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      };
+
+      const phTime = new Intl.DateTimeFormat('en-PH', options).format(now);
+      document.getElementById('pst-clock').textContent = "Philippine Standard Time: " + phTime;
     }
 
-    setInterval(updateClock, 1000);
-    updateClock();
+    // Update every second
+    setInterval(updatePST, 1000);
+    updatePST();
   </script>
 
 </body>
