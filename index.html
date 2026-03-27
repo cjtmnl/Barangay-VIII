@@ -6,7 +6,7 @@
   <title>Barangay VIII, Vigan City | Official Portal</title>
   <style>
     :root {
-      --gov-blue: #112e51; /* Official Government Blue */
+      --gov-blue: #112e51;
       --gov-light-blue: #205493;
       --gov-red: #cd2026;
       --bg-gray: #f9f9f9;
@@ -63,7 +63,6 @@
     .header-right img {
       height: 75px;
       width: auto;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
 
     /* Main Content */
@@ -77,11 +76,6 @@
     .portal-title {
       margin-bottom: 40px;
       color: var(--gov-blue);
-    }
-
-    .portal-title h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
     }
 
     /* Rectangular Buttons */
@@ -113,7 +107,6 @@
     .main-btn:hover {
       background-color: var(--gov-blue);
       transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(17, 46, 81, 0.4);
     }
 
     .main-btn span {
@@ -128,7 +121,7 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      display: none; /* Initial hidden state */
+      display: none;
       margin-top: 30px;
     }
 
@@ -153,15 +146,13 @@
 
     iframe {
       width: 100%;
-      height: 750px;
+      height: 800px;
       border: none;
     }
 
-    /* Mobile Responsive */
     @media (max-width: 768px) {
       .header { flex-direction: column; align-items: center; text-align: center; }
       .header-right { margin-top: 20px; }
-      .brgy-name { font-size: 20px; }
       iframe { height: 500px; }
     }
   </style>
@@ -171,95 +162,79 @@
   <header class="header">
     <div class="header-left">
       <div class="brgy-name">Barangay VIII, Vigan City</div>
-      <div class="datetime" id="pst-clock">Initializing Time...</div>
+      <div class="datetime" id="pst-clock">Philippine Standard Time</div>
     </div>
 
     <div class="header-right">
-      <img src="logo-vigan.png" alt="City of Vigan Seal">
-      <img src="logo-barangay.png" alt="Barangay VIII Seal">
+      <img src="logo-vigan.png" alt="City Seal">
+      <img src="logo-barangay.png" alt="Barangay Seal">
     </div>
   </header>
 
   <main class="container">
     <div class="portal-title">
       <h2>Public Information Center</h2>
-      <p>Official documents and community feedback for the Heritage City of Vigan.</p>
+      <p>Official digital resources for the residents of Barangay VIII.</p>
     </div>
 
     <div class="button-container">
-      <button class="main-btn" onclick="openService('charter')">
+      <button class="main-btn" onclick="openPDF('charter')">
         Citizens Charter
         <span>View Public Documents</span>
       </button>
 
-      <button class="main-btn" onclick="openService('survey')">
+      <button class="main-btn" onclick="openPDF('survey')">
         Survey
-        <span>Community Feedback Form</span>
+        <span>Community PDF Form</span>
       </button>
     </div>
 
     <div id="contentViewer" class="viewer-box">
       <div class="viewer-controls">
         <strong id="viewerTitle">Document Preview</strong>
-        <button class="close-btn" onclick="closeService()">CLOSE ×</button>
+        <button class="close-btn" onclick="closePDF()">CLOSE ×</button>
       </div>
-      <iframe id="serviceFrame" src=""></iframe>
+      <iframe id="pdfFrame" src=""></iframe>
     </div>
   </main>
 
   <script>
-    // --- FILE CONFIGURATION ---
-    // Change these links to your actual GitHub file names or Google Form links
-    const serviceLinks = {
-      charter: "citizens-charter.pdf", // Your PDF file in GitHub
-      survey: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
+    // --- FILE NAMES ---
+    // Ensure these match the files you upload to GitHub exactly
+    const pdfFiles = {
+      charter: "citizens-charter.pdf", 
+      survey: "survey-form.pdf" 
     };
 
-    function openService(type) {
+    function openPDF(type) {
       const viewer = document.getElementById('contentViewer');
-      const frame = document.getElementById('serviceFrame');
+      const frame = document.getElementById('pdfFrame');
       const title = document.getElementById('viewerTitle');
 
-      // Set Title based on button
-      title.innerText = type === 'charter' ? "Citizens Charter - Barangay VIII" : "Community Survey Form";
+      title.innerText = type === 'charter' ? "Citizens Charter - Barangay VIII" : "Community Survey - Barangay VIII";
       
-      // Load Content
-      frame.src = serviceLinks[type];
+      frame.src = pdfFiles[type];
       viewer.style.display = 'block';
-
-      // Scroll smoothly to the viewer
       viewer.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function closeService() {
+    function closePDF() {
       const viewer = document.getElementById('contentViewer');
-      const frame = document.getElementById('serviceFrame');
+      const frame = document.getElementById('pdfFrame');
       viewer.style.display = 'none';
-      frame.src = ""; // Stop loading content
+      frame.src = "";
     }
 
-    // --- PHILIPPINE STANDARD TIME (PST) CLOCK ---
     function updatePST() {
       const now = new Date();
-      
-      // Formatter for Philippine Timezone
       const options = {
         timeZone: 'Asia/Manila',
-        weekday: 'short',
-        year: 'numeric',
-        month: 'short',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true
+        weekday: 'short', year: 'numeric', month: 'short', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
       };
-
-      const phTime = new Intl.DateTimeFormat('en-PH', options).format(now);
-      document.getElementById('pst-clock').textContent = "Philippine Standard Time: " + phTime;
+      document.getElementById('pst-clock').textContent = "Philippine Standard Time: " + new Intl.DateTimeFormat('en-PH', options).format(now);
     }
 
-    // Update every second
     setInterval(updatePST, 1000);
     updatePST();
   </script>
