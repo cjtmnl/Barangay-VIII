@@ -181,21 +181,23 @@
     </div>
   </main>
 
-  <script>
-    // Configuration - Put your links here
-    const links = {
-      // Use the Google Drive /preview link or a direct PDF link
-      pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 
-      // Paste your Google Form link here
-      survey: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
-    };
+ // Configuration - Updated for local files in your GitHub/Netlify folder
+  const links = {
+    // If you renamed your PDF to 'citizens-charter.pdf' in GitHub
+    pdf: "citizens-charter.pdf", 
+    
+    // If your survey is another HTML page or a different PDF
+    survey: "survey-details.pdf" 
+  };
 
-    function showContent(type) {
-      const card = document.getElementById('viewerCard');
-      const frame = document.getElementById('mainFrame');
-      
-      frame.src = links[type];
-      card.style.display = 'block';
+  function showContent(type) {
+    const card = document.getElementById('viewerCard');
+    const frame = document.getElementById('mainFrame');
+    
+    frame.src = links[type];
+    card.style.display = 'block';
+    card.scrollIntoView({ behavior: 'smooth' });
+  }
       
       // Auto-scroll to the viewer
       card.scrollIntoView({ behavior: 'smooth' });
