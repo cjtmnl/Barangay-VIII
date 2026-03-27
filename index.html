@@ -10,17 +10,15 @@
       --gov-light-blue: #205493;
       --gov-red: #cd2026;
       --bg-gray: #f9f9f9;
-      --clock-bg: #222; /* Dark background for the clock */
+      --clock-bg: #222;
     }
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg-gray);
-      color: #333;
     }
 
-    /* Header Section */
     .header {
       background-color: white;
       padding: 15px 5%;
@@ -31,63 +29,39 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .header-left {
-      display: flex;
-      flex-direction: column;
-    }
-
     .brgy-name {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
       color: var(--gov-blue);
-      margin: 0;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* Fixed Time Font & Styling */
-    .clock-container {
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
     }
 
     .pst-label {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: bold;
       color: var(--gov-red);
       text-transform: uppercase;
       margin-bottom: 2px;
-      letter-spacing: 1px;
     }
 
     #pst-clock {
-      font-family: 'Courier New', Courier, monospace; /* Monospaced for fixed width */
-      font-size: 18px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
       font-weight: bold;
       color: #ffffff;
       background-color: var(--clock-bg);
       padding: 6px 12px;
       border-radius: 4px;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
       border-left: 4px solid var(--gov-red);
       display: inline-block;
-      min-width: 280px; /* Prevents jumping when numbers change */
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
     }
 
     .header-right img {
-      height: 80px;
+      height: 70px;
       width: auto;
+      margin-left: 10px;
     }
 
-    /* Main Content */
     .container {
       max-width: 1100px;
       margin: 40px auto;
@@ -95,176 +69,87 @@
       text-align: center;
     }
 
-    .portal-title h2 {
-      font-size: 30px;
-      color: var(--gov-blue);
-      margin-bottom: 10px;
-    }
-
-    /* Buttons */
     .button-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
 
     .main-btn {
       background-color: var(--gov-light-blue);
       color: white;
-      padding: 35px 20px;
-      font-size: 20px;
+      padding: 30px;
+      font-size: 18px;
       font-weight: bold;
-      text-transform: uppercase;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-transform: uppercase;
     }
 
-    .main-btn:hover {
-      background-color: var(--gov-blue);
-      transform: translateY(-3px);
-    }
-
-    .main-btn span {
-      display: block;
-      font-size: 13px;
-      font-weight: normal;
-      margin-top: 5px;
-      opacity: 0.8;
-    }
-
-    /* Viewer Area */
     .viewer-box {
       background: white;
       border-radius: 8px;
-      overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       display: none;
       margin-top: 30px;
+      overflow: hidden;
     }
 
-    .viewer-controls {
-      background: #f1f1f1;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .close-btn {
-      background: var(--gov-red);
-      color: white;
-      border: none;
-      padding: 7px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    iframe {
-      width: 100%;
-      height: 750px;
-      border: none;
-    }
+    iframe { width: 100%; height: 700px; border: none; }
 
     @media (max-width: 768px) {
       .header { flex-direction: column; text-align: center; }
-      .clock-container { align-items: center; margin-bottom: 15px; }
-      .header-right { justify-content: center; }
-      iframe { height: 500px; }
+      .header-right { margin-top: 15px; }
     }
   </style>
 </head>
 <body>
 
   <header class="header">
-    <div class="header-left">
+    <div>
       <div class="brgy-name">Barangay VIII, Vigan City</div>
-      <div class="clock-container">
+      <div style="margin-top:10px;">
         <div class="pst-label">Philippine Standard Time</div>
-        <div id="pst-clock">00:00:00 AM</div>
+        <div id="pst-clock">00:00:00</div>
       </div>
     </div>
-
     <div class="header-right">
-      <img src="logo-vigan.png" alt="City Seal">
-      <img src="logo-barangay.png" alt="Barangay Seal">
+      <img src="vigan.png" alt="City Seal">
+      <img src="brgy.png" alt="Barangay Seal">
     </div>
   </header>
 
-  <main class="container">
-    <div class="portal-title">
-      <h2>Public Information Center</h2>
-      <p>Official digital resources for the residents of Barangay VIII.</p>
-    </div>
-
+  <div class="container">
     <div class="button-container">
-      <button class="main-btn" onclick="openPDF('charter')">
-        Citizens Charter
-        <span>Official Public Documents</span>
-      </button>
-
-      <button class="main-btn" onclick="openPDF('survey')">
-        Survey
-        <span>Community Feedback Form</span>
-      </button>
+      <button class="main-btn" onclick="openPDF('citizens-charter.pdf', 'Citizens Charter')">Citizens Charter</button>
+      <button class="main-btn" onclick="openPDF('survey-form.pdf', 'Community Survey')">Survey</button>
     </div>
 
     <div id="contentViewer" class="viewer-box">
-      <div class="viewer-controls">
-        <strong id="viewerTitle">Document Preview</strong>
-        <button class="close-btn" onclick="closePDF()">CLOSE ×</button>
+      <div style="padding:10px; background:#eee; display:flex; justify-content:space-between; align-items:center;">
+        <strong id="viewerTitle">Preview</strong>
+        <button onclick="document.getElementById('contentViewer').style.display='none'" style="background:var(--gov-red); color:white; border:none; padding:5px 10px; cursor:pointer;">CLOSE ×</button>
       </div>
       <iframe id="pdfFrame" src=""></iframe>
     </div>
-  </main>
+  </div>
 
   <script>
-    const pdfFiles = {
-      charter: "citizens-charter.pdf", 
-      survey: "survey-form.pdf" 
-    };
-
-    function openPDF(type) {
-      const viewer = document.getElementById('contentViewer');
-      const frame = document.getElementById('pdfFrame');
-      const title = document.getElementById('viewerTitle');
-
-      title.innerText = type === 'charter' ? "Citizens Charter" : "Community Survey";
-      frame.src = pdfFiles[type];
-      viewer.style.display = 'block';
-      viewer.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function closePDF() {
-      document.getElementById('contentViewer').style.display = 'none';
-      document.getElementById('pdfFrame').src = "";
+    function openPDF(file, title) {
+      document.getElementById('viewerTitle').innerText = title;
+      document.getElementById('pdfFrame').src = file;
+      document.getElementById('contentViewer').style.display = 'block';
     }
 
     function updatePST() {
       const now = new Date();
-      const options = {
-        timeZone: 'Asia/Manila',
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit', 
-        hour12: true
-      };
-      
-      const timeString = new Intl.DateTimeFormat('en-PH', options).format(now);
+      const options = { timeZone: 'Asia/Manila', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
       const dateOptions = { timeZone: 'Asia/Manila', month: 'short', day: '2-digit', year: 'numeric' };
-      const dateString = new Intl.DateTimeFormat('en-PH', dateOptions).format(now);
-      
-      document.getElementById('pst-clock').textContent = `${dateString} | ${timeString}`;
+      document.getElementById('pst-clock').textContent = `${new Intl.DateTimeFormat('en-PH', dateOptions).format(now)} | ${new Intl.DateTimeFormat('en-PH', options).format(now)}`;
     }
-
     setInterval(updatePST, 1000);
     updatePST();
   </script>
-
 </body>
 </html>
